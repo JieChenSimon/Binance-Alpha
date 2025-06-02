@@ -1,5 +1,5 @@
 # BscScan 钱包交易分析器 Web 应用
-This project will be updated if i have time, but it is not my main project, so it may not be updated frequently.
+This project will be updated if I have time, but it is not my main project, so it may not be updated frequently.
 
 
 这是一个基于 Web 的应用程序，用于分析指定币安智能链 (BSC) 钱包地址在特定时间段内的交易记录。它可以获取交易详情、对交易进行分类（买入/卖出等）、估算交易的USDT价值，并使用FIFO（先进先出）方法计算已实现盈亏和“损耗值”。
