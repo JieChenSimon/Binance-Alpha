@@ -1,4 +1,6 @@
 # BscScan 钱包交易分析器 Web 应用
+This project will be updated if i have time, but it is not my main project, so it may not be updated frequently.
+
 
 这是一个基于 Web 的应用程序，用于分析指定币安智能链 (BSC) 钱包地址在特定时间段内的交易记录。它可以获取交易详情、对交易进行分类（买入/卖出等）、估算交易的USDT价值，并使用FIFO（先进先出）方法计算已实现盈亏和“损耗值”。
 
@@ -19,3 +21,22 @@
 * **Web 界面**:
     * 用户可以通过网页前端输入钱包地址和自己的 BscScan API 密钥。
     * 结果以表格和摘要的形式清晰展示。
+
+## 配置
+
+* **BscScan API 密钥**: 用户需要在Web界面的输入框中提供自己的 BscScan API 密钥。此密钥仅用于当次请求，不会被服务器存储。
+* **目标钱包地址**: 用户在Web界面输入想要分析的钱包地址。
+* 脚本内部 `app.py` 文件顶部的 `API_CALL_DELAY` 等常量可以根据实际情况调整，以更好地管理API请求频率。
+
+## 如何运行应用
+
+1.  确保您已完成上述安装步骤并且虚拟环境已激活（如果使用的话）。
+2.  在项目根目录 (`bscscan_webapp/`)下，运行 Flask 应用：
+    ```bash
+    python app.py
+    ```
+3.  应用启动后，您会在终端看到类似如下信息：
+    ```
+     * Running on [http://127.0.0.1:5000/](http://127.0.0.1:5000/) (Press CTRL+C to quit)
+    ```
+4.  打开您的网络浏览器，访问显示的地址 (通常是 `http://127.0.0.1:5000/`)。
