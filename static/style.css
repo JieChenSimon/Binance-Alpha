@@ -1,0 +1,156 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    max-width: 1400px;
+    margin: auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+h2 {
+    margin-top: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.input-form div {
+    margin-bottom: 15px;
+}
+
+.input-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-form input[type="text"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#loadingIndicator {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.1em;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3; /* Light grey */
+    border-top: 4px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 10px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error-message {
+    color: red;
+    background-color: #ffebeb;
+    border: 1px solid red;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.table-container {
+    overflow-x: auto; /* Allows horizontal scrolling for wide tables */
+    margin-top: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    white-space: nowrap;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+td a {
+    color: #007bff;
+    text-decoration: none;
+}
+td a:hover {
+    text-decoration: underline;
+}
+
+#summaryDetails ul {
+    list-style-type: none;
+    padding: 0;
+}
+#summaryDetails li {
+    padding: 5px 0;
+    border-bottom: 1px dashed #eee;
+}
+#summaryDetails li strong {
+    min-width: 250px;
+    display: inline-block;
+}
+
+
+#outstandingHoldings h4 {
+    margin-top: 15px;
+    color: #0056b3;
+}
+#outstandingHoldings ul {
+    padding-left: 20px;
+}
+#outstandingHoldings li {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}

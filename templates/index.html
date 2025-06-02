@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BscScan Transaction Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>BscScan Transaction Analyzer</h1>
+        <div class="input-form">
+            <div>
+                <label for="walletAddress">Wallet Address:</label>
+                <input type="text" id="walletAddress" name="walletAddress" placeholder="0x...">
+            </div>
+            <div>
+                <label for="apiKey">BscScan API Key:</label>
+                <input type="text" id="apiKey" name="apiKey" placeholder="Your BscScan API Key">
+            </div>
+            <button id="submitBtn">Fetch Transactions</button>
+        </div>
+
+        <div id="loadingIndicator" style="display:none;">
+            <p>Loading data, please wait... This might take a while.</p>
+            <div class="spinner"></div>
+        </div>
+
+        <div id="errorDisplay" class="error-message" style="display:none;"></div>
+
+        <div id="resultsArea" style="display:none;">
+            <h2>Summary</h2>
+            <div id="summaryDetails"></div>
+
+            <h2>Transactions in Time Window</h2>
+            <div class="table-container">
+                <table id="transactionsTable">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <h2>Realized Trades Log (FIFO)</h2>
+            <div class="table-container">
+                <table id="realizedTradesTable">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            
+            <h2>Outstanding Holdings (FIFO - End of Period)</h2>
+            <div id="outstandingHoldings"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
