@@ -9,9 +9,9 @@ from collections import deque, defaultdict
 BSCSCAN_API_URL = "https://api.bscscan.com/api"
 COINGECKO_API_URL = "https://api.coingecko.com/api/v3"
 BEP20_TRANSFER_EVENT_SIGNATURE = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
-API_CALL_DELAY = 0.35
-TOKEN_INFO_API_DELAY = 0.35
-COINGECKO_API_DELAY = 2.5
+API_CALL_DELAY = 0.2
+TOKEN_INFO_API_DELAY = 0.2
+COINGECKO_API_DELAY = 1
 
 ZKJ_ADDRESS = "0xc71b5f6313554be6853efe9c3ab6b9590f8302e81"
 WBNB_ADDRESS = "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c"
@@ -280,21 +280,37 @@ def process_wallet_data(target_wallet_address, bsc_api_key):
     token_info_cache = {}
     bnb_price_cache = {}
 
-    now_utc = datetime.now(dt_timezone.utc)
-    current_beijing_time = get_beijing_time_from_utc(now_utc)
+# 定义北京时区 (UTC+8)
+    beijing_tz = dt_timezone(BEIJING_TIMEZONE_OFFSET)
     
-    if current_beijing_time.hour < 8:
-        target_beijing_date_for_start = current_beijing_time.date() - timedelta(days=1)
-    else:
-        target_beijing_date_for_start = current_beijing_time.date()
-
+    # 获取当前时间（带UTC时区）
+    now_utc = datetime.now(dt_timezone.utc)
+    
+    # 转换为北京时间
+    now_beijing = now_utc.astimezone(beijing_tz)
+    today_beijing = now_beijing.date()
+    
+    # 构造开始时间（北京时间今天8:00）
     start_datetime_beijing = datetime(
-        target_beijing_date_for_start.year, target_beijing_date_for_start.month,
-        target_beijing_date_for_start.day, 8, 0, 0
+        today_beijing.year, today_beijing.month, today_beijing.day, 
+        8, 0, 0, tzinfo=beijing_tz
     )
+    
+    # 如果当前北京时间早于8:00，则使用昨天8:00作为开始
+    if now_beijing < start_datetime_beijing:
+        start_datetime_beijing -= timedelta(days=1)
+    
+    # 结束时间是开始时间+24小时
     end_datetime_beijing = start_datetime_beijing + timedelta(days=1)
-    start_datetime_utc = get_utc_from_beijing_time(start_datetime_beijing)
-    end_datetime_utc = get_utc_from_beijing_time(end_datetime_beijing)
+    
+    # 转换为UTC
+    start_datetime_utc = start_datetime_beijing.astimezone(dt_timezone.utc)
+    end_datetime_utc = end_datetime_beijing.astimezone(dt_timezone.utc)
+    
+    # 如果结束时间超过当前时间，则使用当前时间作为结束
+    if end_datetime_utc > now_utc:
+        end_datetime_utc = now_utc
+    
     start_timestamp_unix_utc = int(start_datetime_utc.timestamp())
     end_timestamp_unix_utc = int(end_datetime_utc.timestamp())
 
