@@ -9,7 +9,7 @@ from collections import deque, defaultdict
 BSCSCAN_API_URL = "https://api.bscscan.com/api"
 COINGECKO_API_URL = "https://api.coingecko.com/api/v3"
 BEP20_TRANSFER_EVENT_SIGNATURE = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
-API_CALL_DELAY = 0.2
+API_CALL_DELAY = 0.25
 TOKEN_INFO_API_DELAY = 0.2
 COINGECKO_API_DELAY = 1
 
